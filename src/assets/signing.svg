@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="662" height="662" viewBox="0 0 662 662">
+  <g id="Group_7" data-name="Group 7" transform="translate(-629 -246)">
+    <path id="Union_1" data-name="Union 1" d="M16,331.5c0-173.969,141.03-315,315-315s315,141.031,315,315-141.031,315-315,315S16,505.47,16,331.5Z" transform="translate(629 245.5)" fill="none" stroke="#232129" stroke-width="32"/>
+    <g id="Group_6" data-name="Group 6">
+      <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(710 328)" fill="#ff9000" stroke="#707070" stroke-width="1">
+        <circle cx="250" cy="250" r="250" stroke="none"/>
+        <circle cx="250" cy="250" r="249.5" fill="none"/>
+      </g>
+      <g id="Group_5" data-name="Group 5">
+        <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(917 533)" fill="#fa9300" stroke="#232129" stroke-width="16">
+          <circle cx="43.5" cy="43.5" r="43.5" stroke="none"/>
+          <circle cx="43.5" cy="43.5" r="35.5" fill="none"/>
+        </g>
+        <line id="Line_1" data-name="Line 1" y1="121" transform="translate(960.5 419.5)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+        <line id="Line_2" data-name="Line 2" x2="94" y2="1" transform="translate(1004 577)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+      </g>
+      <g id="Group_1" data-name="Group 1">
+        <line id="Line_5" data-name="Line 5" x2="16" transform="translate(702.5 576.5)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+      </g>
+      <g id="Group_2" data-name="Group 2" transform="translate(1537 -382) rotate(90)">
+        <line id="Line_5-2" data-name="Line 5" x2="16" transform="translate(702.5 576.5)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+      </g>
+      <g id="Group_3" data-name="Group 3" transform="translate(1537 118) rotate(90)">
+        <line id="Line_5-3" data-name="Line 5" x2="16" transform="translate(702.5 576.5)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+      </g>
+      <g id="Group_4" data-name="Group 4" transform="translate(500)">
+        <line id="Line_5-4" data-name="Line 5" x2="16" transform="translate(702.5 576.5)" fill="none" stroke="#232129" stroke-linecap="round" stroke-width="16"/>
+      </g>
+    </g>
+  </g>
+</svg>
