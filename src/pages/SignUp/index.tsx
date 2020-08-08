@@ -1,19 +1,32 @@
 import * as React from 'react';
 import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup'
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { useYupValidationResolver } from '../../helpers'
 
 import * as S from './styled';
 
 type SignUp = {
   name: string;
   email: string;
+  password: string;
 };
 
 const SignUp: React.FC = () => {
-  const { register, handleSubmit, watch } = useForm<SignUp>();
+  const schema = React.useMemo(() => yup.object().shape({
+    name: yup.string().required('Nome obrigatório'),
+    email: yup.string()
+      .required('E-mail obrigatório')
+      .email('Digite um e-mail válido'),
+    password: yup.string().min(6, 'No mínimo 6 dígitos')
+  }), [])
+
+  const { register, handleSubmit, watch, errors } = useForm<SignUp>({
+    resolver: useYupValidationResolver(schema)
+  });
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -31,6 +44,7 @@ const SignUp: React.FC = () => {
             placeholder="Nome"
             register={register}
             watch={watch}
+            error={errors.name && errors.name.message}
           />
           <Input
             name="email"
@@ -38,6 +52,7 @@ const SignUp: React.FC = () => {
             placeholder="E-mail"
             register={register}
             watch={watch}
+            error={errors.email && errors.email.message}
           />
 
           <Input
@@ -47,6 +62,7 @@ const SignUp: React.FC = () => {
             placeholder="Senha"
             register={register}
             watch={watch}
+            error={errors.password && errors.password.message}
           />
 
           <Button type="submit">Entrar</Button>

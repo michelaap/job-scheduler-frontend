@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IconBaseProps } from 'react-icons';
+import { FiAlertCircle } from 'react-icons/fi'
 
 import * as S from './styled';
 
@@ -16,6 +17,7 @@ type InputProps = React.DetailedHTMLProps<
 > & {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
+  error?: string;
   register?: () => RefReturn;
   watch?: (names: string | string[] | undefined) => any;
 };
@@ -23,6 +25,7 @@ type InputProps = React.DetailedHTMLProps<
 const Input: React.FC<InputProps> = ({
   icon: Icon,
   register,
+  error,
   watch,
   ...rest
 }) => {
@@ -40,10 +43,10 @@ const Input: React.FC<InputProps> = ({
       setIsFilled(true)
     }
 
-  }, []);
+  }, [watch, rest.name]);
 
   return (
-    <S.Container isFilled={isFilled} isFocused={isFocused}>
+    <S.Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
       {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputFucus}
@@ -51,6 +54,11 @@ const Input: React.FC<InputProps> = ({
         ref={register}
         {...rest}
       />
+      {error && (
+        <S.Error title={error}>
+          <FiAlertCircle color='#c53030' size={20} />
+        </S.Error>
+      )}
     </S.Container>
   );
 };

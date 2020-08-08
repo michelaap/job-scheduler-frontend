@@ -1,14 +1,29 @@
 import * as React from 'react';
+import * as yup from 'yup'
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-
+import { useYupValidationResolver } from '../../helpers'
 import * as S from './styled';
 
+interface SignInProps {
+  email: string;
+  password: string;
+}
+
 const SignIn: React.FC = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const schema = React.useMemo(() => yup.object().shape({
+    email: yup.string()
+      .required('E-mail obrigatório')
+      .email('Digite um e-mail válido'),
+    password: yup.string().min(6, 'No mínimo 6 dígitos')
+  }), [])
+
+  const { register, handleSubmit, watch, errors } = useForm<SignInProps>({
+    resolver: useYupValidationResolver(schema)
+  });
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -25,6 +40,7 @@ const SignIn: React.FC = () => {
             placeholder="E-mail"
             register={register}
             watch={watch}
+            error={errors.email && errors.email.message}
           />
 
           <Input
@@ -34,6 +50,7 @@ const SignIn: React.FC = () => {
             placeholder="Senha"
             register={register}
             watch={watch}
+            error={errors.password && errors.password.message}
           />
 
           <Button type="submit">Entrar</Button>
