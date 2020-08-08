@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { useAuth } from '../../context/AuthContext';
 import { useYupValidationResolver } from '../../helpers'
-import { AuthContext } from '../../context/AuthContext'
 
 import * as S from './styled';
 
@@ -16,7 +16,7 @@ interface SignInProps {
 }
 
 const SignIn: React.FC = () => {
-  const { user, signIn } = React.useContext(AuthContext);
+  const { signIn } = useAuth();
 
   const schema = React.useMemo(() => yup.object().shape({
     email: yup.string()

@@ -49,10 +49,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     setState({ token, user })
   }, []);
 
-  const singUp = React.useCallback(() => {
-
-  }, []);
-
   return (
     <AuthContext.Provider value={{ user: state.user, signIn }}>
       {children}
@@ -60,3 +56,12 @@ export const AuthProvider: React.FC = ({ children }) => {
   )
 }
 
+export const useAuth = (): AuthContextState => {
+  const context = React.useContext(AuthContext)
+
+  if (!context) {
+    throw new Error('useAuth must be used with AuthProvider')
+  }
+
+  return context;
+}
