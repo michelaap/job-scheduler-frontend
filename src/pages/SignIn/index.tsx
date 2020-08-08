@@ -16,7 +16,7 @@ interface SignInProps {
 }
 
 const SignIn: React.FC = () => {
-  const { signIn } = React.useContext(AuthContext);
+  const { user, signIn } = React.useContext(AuthContext);
 
   const schema = React.useMemo(() => yup.object().shape({
     email: yup.string()
