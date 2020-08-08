@@ -14,6 +14,7 @@ interface Credentials {
 interface AuthContextState {
   user: object;
   signIn(credentials: Credentials): Promise<void>;
+  signOut(): void;
 }
 
 export const AuthContext = React.createContext<AuthContextState>(
@@ -49,8 +50,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     setState({ token, user })
   }, []);
 
+  const signOut = React.useCallback(() => {
+    localStorage.removeItem('@scheduler:token');
+    localStorage.removeItem('@scheduler:user');
+    setState({} as AuthState);
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user: state.user, signIn }}>
+    <AuthContext.Provider value={{ user: state.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
