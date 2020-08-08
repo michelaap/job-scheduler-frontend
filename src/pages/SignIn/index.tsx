@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import * as S from './styled';
 
 const SignIn: React.FC = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -24,6 +24,7 @@ const SignIn: React.FC = () => {
             icon={FiMail}
             placeholder="E-mail"
             register={register}
+            watch={watch}
           />
 
           <Input
@@ -32,6 +33,7 @@ const SignIn: React.FC = () => {
             type="password"
             placeholder="Senha"
             register={register}
+            watch={watch}
           />
 
           <Button type="submit">Entrar</Button>

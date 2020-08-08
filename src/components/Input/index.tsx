@@ -16,19 +16,41 @@ type InputProps = React.DetailedHTMLProps<
 > & {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
-  register: ({ required }: { required?: boolean }) => RefReturn;
+  register?: () => RefReturn;
+  watch?: (names: string | string[] | undefined) => any;
 };
 
 const Input: React.FC<InputProps> = ({
   icon: Icon,
   register,
-  required,
+  watch,
   ...rest
 }) => {
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [isFilled, setIsFilled] = React.useState(false);
+
+  const handleInputFucus = React.useCallback(() => {
+    setIsFocused(true)
+  }, [])
+
+  const handleInputBlur = React.useCallback(() => {
+    setIsFocused(false);
+
+    if (watch && watch(rest.name)) {
+      setIsFilled(true)
+    }
+
+  }, []);
+
   return (
-    <S.Container>
+    <S.Container isFilled={isFilled} isFocused={isFocused}>
       {Icon && <Icon size={20} />}
-      <input ref={register({ required })} {...rest} />
+      <input
+        onFocus={handleInputFucus}
+        onBlur={handleInputBlur}
+        ref={register}
+        {...rest}
+      />
     </S.Container>
   );
 };

@@ -13,7 +13,7 @@ type SignUp = {
 };
 
 const SignUp: React.FC = () => {
-  const { register, handleSubmit } = useForm<SignUp>();
+  const { register, handleSubmit, watch } = useForm<SignUp>();
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -30,12 +30,14 @@ const SignUp: React.FC = () => {
             icon={FiUser}
             placeholder="Nome"
             register={register}
+            watch={watch}
           />
           <Input
             name="email"
             icon={FiMail}
             placeholder="E-mail"
             register={register}
+            watch={watch}
           />
 
           <Input
@@ -44,6 +46,7 @@ const SignUp: React.FC = () => {
             type="password"
             placeholder="Senha"
             register={register}
+            watch={watch}
           />
 
           <Button type="submit">Entrar</Button>
