@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useYupValidationResolver } from '../../helpers'
+import { AuthContext } from '../../context/AuthContext'
+
 import * as S from './styled';
 
 interface SignInProps {
@@ -14,6 +16,8 @@ interface SignInProps {
 }
 
 const SignIn: React.FC = () => {
+  const { signIn } = React.useContext(AuthContext);
+
   const schema = React.useMemo(() => yup.object().shape({
     email: yup.string()
       .required('E-mail obrigatório')
@@ -25,7 +29,9 @@ const SignIn: React.FC = () => {
     resolver: useYupValidationResolver(schema)
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = React.useCallback(({ email, password }) => {
+    signIn({ email, password });
+  }, [signIn] )
 
   return (
     <S.Container>
