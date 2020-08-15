@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import { useYupValidationResolver } from '../../helpers'
 
 import * as S from './styled';
